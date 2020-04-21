@@ -1,8 +1,8 @@
 language: python
 python:
-  - "3.7"
+   - "3.6"
 cache: pip
 install:
-  - sudo pip install -r packages/regression_model/requirements.txt
+   - pip install -r packages/regression_model/requirements.txt
 script:
-  - packages/regression_model/tests/test_predict.py
+   - pytest packages/regression_model/tests/test_predict.py
