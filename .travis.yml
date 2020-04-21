@@ -3,6 +3,6 @@ python:
   - "3.7"
 cache: pip
 install:
-  - pip install --user -r packages/regression_model/requirements.txt
+  - sudo pip install -r packages/regression_model/requirements.txt
 script:
   - packages/regression_model/tests/test_predict.py
