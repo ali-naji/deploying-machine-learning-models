@@ -10,8 +10,8 @@ import logging
 
 
 _logger = logging.getLogger(__name__)
-s3 = boto3.client('s3', aws_access_key_id=os.environ.get('accesskeyid'),
-                  aws_secret_access_key=os.environ.get('secretkey'))
+s3 = boto3.client('s3', aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
+                  aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'))
 
 
 def load_dataset(*, file_name: str) -> pd.DataFrame:
