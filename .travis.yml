@@ -2,8 +2,10 @@ language: python
 python:
    - "3.6"
 cache: pip
+
 install:
    - pip install -r packages/regression_model/requirements.txt
+   - pip install --extra-index-url http://house-price-regression-package.s3-website-us-west-1.amazonaws.com regression_model --trusted-host http://house-price-regression-package.s3-website-us-west-1.amazonaws.com
 script:
    - python packages/regression_model/regression_model/train_pipeline.py
    - pytest packages/regression_model/tests/test_predict.py
