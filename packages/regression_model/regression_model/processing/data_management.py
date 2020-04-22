@@ -4,14 +4,19 @@ from sklearn.pipeline import Pipeline
 
 from regression_model.config import config
 from regression_model import __version__ as _version
-
+import boto3
+import os
 import logging
 
 
 _logger = logging.getLogger(__name__)
+s3 = boto3.client('s3', aws_access_key_id=os.environ.get('accesskeyid'),
+                  aws_secret_access_key=os.environ.get('secretkey'))
 
 
 def load_dataset(*, file_name: str) -> pd.DataFrame:
+    s3.download_file('house-price-regression-data', file_name,
+                     config.DATASET_DIR / file_name)
     _data = pd.read_csv(f"{config.DATASET_DIR}/{file_name}")
     return _data
 
