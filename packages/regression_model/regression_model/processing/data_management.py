@@ -16,7 +16,7 @@ s3 = boto3.client('s3', aws_access_key_id=os.environ.get('accesskeyid'),
 
 def load_dataset(*, file_name: str) -> pd.DataFrame:
     s3.download_file('house-price-regression-data', file_name,
-                     os.fspath(config.DATASET_DIR / file_name))
+                     (config.DATASET_DIR / file_name).absolute().as_posix())
     _data = pd.read_csv(f"{config.DATASET_DIR}/{file_name}")
     return _data
 
