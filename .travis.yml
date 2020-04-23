@@ -8,8 +8,8 @@ script:
   - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
   - unzip -qq awscliv2.zip
   - sudo ./aws/install
-  - cd packages/regression_model
+  - cd /home/travis/build/ali-naji/deploying-machine-learning-models/packages/regression_model
   - python regression_model/train_pipeline.py
-  - py.test -vv tests
+  - pytest tests
   - python setup.py sdist
   - aws s3 cp ./dist/regression_model-0.1.0.tar.gz s3://house-price-regression-package/
