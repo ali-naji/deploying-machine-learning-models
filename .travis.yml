@@ -4,13 +4,16 @@ python:
 cache: pip
 
 install:
-  - pip install -I regression_model --find-links http://house-price-regression-package.s3-website-us-west-1.amazonaws.com/regression_model/regression_model-0.1.0.tar.gz
+  - pip install -I regression_model --find-links http://house-price-regression-package.s3-website-us-west-1.amazonaws.com/regression_model-0.1.0.tar.gz --trusted-host house-price-regression-package.s3-website-us-west-1.amazonaws.com
 script:
+  - virtualenv env-ci
+  - ./env-ci/bin/activate
+  - pip install --upgrade pip
   - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-  - unzip awscliv2.zip
+  - unzip -qq awscliv2.zip
   - sudo ./aws/install
   - cd packages/regression_model
   - python setup.py sdist
-  - aws s3 cp ./dist/regression_model-0.1.0.tar.gz s3://house-price-regression-package/regression_model/regression_model-0.1.0.tar.gz
+  - aws s3 cp ./dist/regression_model-0.1.0.tar.gz s3://house-price-regression-package/
   - python regression_model/train_pipeline.py
   - pytest tests
