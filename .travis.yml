@@ -10,6 +10,6 @@ script:
   - sudo ./aws/install
   - cd packages/regression_model
   - python regression_model/train_pipeline.py
-  - pytest tests
+  - py.test -vv tests
   - python setup.py sdist
   - aws s3 cp ./dist/regression_model-0.1.0.tar.gz s3://house-price-regression-package/
