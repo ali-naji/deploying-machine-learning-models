@@ -36,6 +36,7 @@ def save_pipeline(*, pipeline_to_persist) -> None:
 
     joblib.dump(pipeline_to_persist, save_path)
     _logger.info(f"saved pipeline: {save_file_name}")
+    _logger.info(f"saved location: {save_path}")
 
 
 def load_pipeline(*, file_name: str) -> Pipeline:
