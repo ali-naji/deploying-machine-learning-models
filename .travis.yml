@@ -10,5 +10,5 @@ script:
   - python setup.py sdist
   - pip install -e .
   - python regression_model/train_pipeline.py
-  - python -m pytest tests
-  - aws s3 cp ./dist/regression_model-0.1.0.tar.gz s3://house-price-regression-package/
+  - python -m pytest tests || travis_terminate 1;
+  - aws s3 cp ./dist/ s3://house-price-regression-package/ --exclude "*" --include "*.tar.gz"
