@@ -9,5 +9,5 @@ script:
   - cd packages/regression_model
   - python setup.py sdist
   - python regression_model/train_pipeline.py
-  - python -m pytest tests
+  - python -m pytest tests 
   - aws s3 cp ./dist/regression_model-0.1.0.tar.gz s3://house-price-regression-package/
