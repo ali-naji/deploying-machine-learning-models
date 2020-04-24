@@ -11,4 +11,4 @@ script:
   - pip install -e .
   - python regression_model/train_pipeline.py
   - python -m pytest tests || travis_terminate 1;
-  - aws s3 cp ./dist/ s3://house-price-regression-package/ --exclude "*" --include "*.tar.gz"
+  - aws s3 cp ./dist/ s3://house-price-regression-package/ --recursive --exclude "*" --include "*.gz"
