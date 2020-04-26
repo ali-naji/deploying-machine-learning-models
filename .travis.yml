@@ -12,4 +12,5 @@ script:
   - python regression_model/train_pipeline.py
   - python -m pytest tests || travis_terminate 1;
   - aws s3 cp ./dist/ s3://house-price-regression-package/ --recursive --exclude "*" --include "*.gz"
+  - pip install -r ../ml_api/requirements.txt
   - python -m pytest ../ml_api/tests || travis_terminate 1;
