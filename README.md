@@ -1,2 +1,2 @@
-# Deploying Machine Learning Models
-For the documentation, visit the course on Udemy.
+# Vehicles price regression
+This project is about predicting used cars sales prices using Random Forest Regressor model
