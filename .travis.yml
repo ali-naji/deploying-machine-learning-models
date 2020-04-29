@@ -11,6 +11,7 @@ script:
   - python -m pytest tests || travis_terminate 1;
   - pip install -r ../ml_api/requirements.txt
   - python -m pytest ../ml_api/tests || travis_terminate 1;
+  - cd ../../
   - eval $(aws ecr get-login --no-include-email --region us-west-1)
   - make build-ml-api-aws tag-ml-api push-ml-api-aws
   - aws s3 cp ./dist/ s3://house-price-regression-package/ --recursive --exclude "*" --include "*.gz"
