@@ -5,7 +5,7 @@
 flask>=1.1.1,<1.2.0
 
 # server hosting
-junicorn==19.9.0
+gunicorn==19.9.0
 
 # regression model 
 
