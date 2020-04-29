@@ -9,7 +9,7 @@ ARG PIP_REMOTE_PACKAGE
 ARG TRUSTED_HOST
 ARG AWS_ACCESS_KEY_ID
 ARG AWS_SECRET_ACCESS_KEY
-ENV FLASK_APP run.py
+ENV FLASK_APP run.py 
 
 # Install requirements, including from Gemfury
 ADD ./packages/ml_api /opt/ml_api/
