@@ -3,14 +3,14 @@ python:
   - "3.6"
 cache: pip
 script:
-  - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-  - unzip -qq awscliv2.zip
-  - sudo ./aws/install
+  - pip install awscli
   - cd packages/regression_model
   - python setup.py sdist
   - pip install -e .
   - python regression_model/train_pipeline.py
   - python -m pytest tests || travis_terminate 1;
-  - aws s3 cp ./dist/ s3://house-price-regression-package/ --recursive --exclude "*" --include "*.gz"
   - pip install -r ../ml_api/requirements.txt
   - python -m pytest ../ml_api/tests || travis_terminate 1;
+  - eval $(aws ecr get-login --no-include-email --region us-west-1)
+  - make build-ml-api-aws tag-ml-api push-ml-api-aws
+  - aws s3 cp ./dist/ s3://house-price-regression-package/ --recursive --exclude "*" --include "*.gz"
