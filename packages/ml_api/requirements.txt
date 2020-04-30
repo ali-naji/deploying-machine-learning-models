@@ -1,4 +1,4 @@
---find-links=${PIP_REMOTE_PACKAGE}
+--extra-index-url=${PIP_REMOTE_PACKAGE}
 --trusted-host=${TRUSTED_HOST}
 
 # api
